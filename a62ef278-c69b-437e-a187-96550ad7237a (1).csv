@@ -1,0 +1,140 @@
+id,agent_id,user_number,agent_number,status,duration,recording_url,transcript,created_at,scheduled_at,total_cost,hangup_by,hangup_reason,termination_reason,transfer_termination_reason,extracted_data_Call Outcome & Scrap Info_Call Outcome_objective,extracted_data_Call Outcome & Scrap Info_Call Outcome_confidence,extracted_data_Call Outcome & Scrap Info_Call Outcome_subjective,extracted_data_Call Outcome & Scrap Info_Call Outcome_validation,extracted_data_Call Outcome & Scrap Info_Call Outcome_confidence_label,extracted_data_Call Outcome & Scrap Info_Call Outcome_reasoning_objective,extracted_data_Call Outcome & Scrap Info_Call Outcome_reasoning_subjective,extracted_data_General_Call Summary_subjective,summary
+d3ebd752-2ec9-40ee-9e67-0d7570e5814f,a62ef278-c69b-437e-a187-96550ad7237a,,,completed,179.8,https://api.bolna.ai/recordings/call/d3ebd752-2ec9-40ee-9e67-0d7570e5814f,"assistant: Hi, I’m Priya calling from the Crapbin customer service team.
+user: No, yeah. Tell me.
+assistant:  I see you last used our Crapbin scrap pickup service on 25/08/2026. Do you have any scrap available for pickup right now?
+user: Yeah, actually I don't remember, uh, this Crapbin.
+assistant:  Crapbin is a doorstep scrap pickup service where we collect household or office scrap like paper, plastic, iron, furniture, and appliances with digital weighing and instant payment. Do you have any scrap available right now?
+user: Yeah, wait, uh, let me ask my brother and I will let you know in a second.
+assistant:  Sure, take your time!
+user: Yeah, well, uh, I asked him and he said that we do have a scrap, like, iron and e-waste and plastics.
+assistant:  Great! What kind of scrap items do you have?
+user: Yeah, it's like, I told you, iron e-waste is plastic and, uh, yeah.
+assistant:   Got it. Approximately how many kgs or items would that be?
+user: No, that would be around, uh, 28 kg, and 4 to 5 boxes.
+assistant:   Which area or locality would this pickup be from?
+user: Yeah, it would be from Secunderabad, Hyderabad.
+assistant:  Got it, I've noted that down for your area. Our local executive will call you shortly to confirm the rates and pickup timing. Is there anything else I can help you with?
+user: Yeah, how would this, uh, scrap be taken? It will be taken on the pieces-wise, or it will be taken in the overall content?
+assistant:  Our team weighs the scrap digitally right in front of you and pays instantly via UPI (PhonePe, Google Pay) or cash.
+user: Yeah, and, uh, how will this, uh, scrap be picked up?
+assistant:   Not at all! Our pickup team brings bags and carries everything down from your doorstep at no extra charge. Is there anything else I can help you with?
+user: Hmm, yeah, like, when will your executor come here?
+assistant:   Once our area executive calls you, they will schedule the pickup date and time according to your convenience. Is there anything else I can help you with?
+user: Is there any regional manager I can contact now?
+assistant:   Yes, definitely! I will ask our area executive to call you directly so you can discuss everything with them. Is there anything else I can help you with?
+user: In, uh, like, what are the locations you are located in?
+assistant:  I don't have those details right here, but our executive will call you shortly and help with any information you need. Is there anything else I can help you with?
+user: Can you crack a joke?
+assistant: I cannot answer that kind of question, but I can help you with your scrap pickup. Do you have any scrap available for pickup?
+",2026-10-25T02:49:07+00:00,,13.08,Agent,Normal hangup,,,,0.9,INTERESTED_NOW,,High,,"The customer confirmed that they have scrap available for pickup including iron, e-waste, and plastics, indicating a willingness to schedule the pickup.","The conversation was between a customer service assistant from Crapbin and a user. The assistant initiated the call to inquire if the user had scrap available for pickup, referencing a previous service used on 25/08/2026. The user was initially unfamiliar with Crapbin, so the assistant explained the doorstep scrap pickup service, including digital weighing and instant payment. The user confirmed having about 28 kg of scrap, including iron, e-waste, and plastics, in 4 to 5 boxes, located in Secunderabad, Hyderabad. The assistant informed that a local executive would contact the user to confirm rates and schedule a pickup. Queries about the pickup process, payment methods, and contact with a regional manager were addressed. The assistant clarified that the pickup team carries the scrap from the doorstep with no extra charges and payment is made instantly via UPI or cash. The user also asked about Crapbin's locations and requested a joke; the assistant redirected to service-related information and promised further details from the executive.","The conversation was between a customer service assistant from Crapbin and a user. The assistant initiated the call to inquire if the user had scrap available for pickup, referencing a previous service used on 25/08/2026. The user was initially unfamiliar with Crapbin, so the assistant explained the doorstep scrap pickup service, including digital weighing and instant payment. The user confirmed having about 28 kg of scrap, including iron, e-waste, and plastics, in 4 to 5 boxes, located in Secunderabad, Hyderabad. The assistant informed that a local executive would contact the user to confirm rates and schedule a pickup. Queries about the pickup process, payment methods, and contact with a regional manager were addressed. The assistant clarified that the pickup team carries the scrap from the doorstep with no extra charges and payment is made instantly via UPI or cash. The user also asked about Crapbin's locations and requested a joke; the assistant redirected to service-related information and promised further details from the executive."
+577d10bd-c137-4170-862a-664ec80bc227,a62ef278-c69b-437e-a187-96550ad7237a,,,completed,159.6,https://api.bolna.ai/recordings/call/577d10bd-c137-4170-862a-664ec80bc227,"assistant: Hi, I’m Priya calling from the Crapbin customer service team.
+user: Yeah, hi చెప్పండి.
+assistant: నమస్తే అండీ! మీరు ఇంతకుముందు మా Crapbin స్క్రాప్ పికప్ సర్వీస్ ఉపయోగించారు కదా... ప్రస్తుతం మీ దగ్గర పికప్ కోసం ఏమైనా స్క్రాప్ రెడీగా ఉందా అండీ?
+user: ఆ, వన్ సెకండ్ అండి, నేను మా ఓనర్‌ని అడిగి చెప్తాను.
+assistant:  షూర్ అండీ, అడిగి చెప్పండి!
+user: ఉమ్...
+assistant:  మీరు మీ ఓనర్‌ని అడిగారా అండీ? మీ దగ్గర పికప్ కోసం ఏమైనా స్క్రాప్ రెడీగా ఉందా?
+user: యా, అవునండి, ఉందంట.
+assistant:  సరేనండీ! ఏమేం scrap items ఉన్నాయండీ?
+user: ఆ... ఐరన్, ప్లాస్టిక్, ఈ-వేస్ట్, స్క్రాప్ ఉన్నాయండి.
+assistant:  సుమారుగా ఎన్ని kgs లేదా ఎన్ని బాక్సులు ఉండొచ్చండీ?
+user: ఉమ్, ఒక 8 kg అండ్ 25 బాక్సెస్ ఉన్నాయట.
+assistant:  ఈ పికప్ ఏ ఏరియా లేదా కాలనీ నుండి ఉంటుందండీ?
+user: పికప్ సికింద్రాబాద్ ఏరియా, ఎస్. రుణార్ కాలనీ నుంచి ఉంటుంది.
+assistant:  సరేనండీ, మీ ఏరియా మరియు స్క్రాప్ వివరాలు నోట్ చేసుకున్నాను. మా ఏరియా ఎగ్జిక్యూటివ్ మీకు కాల్ చేసి రేట్స్ మరియు పికప్ టైమింగ్స్ కన్ఫర్మ్ చేస్తారు. నేను మీకు ఇంకేమైనా సహాయం చేయగలనా అండీ?
+user: ఆ... లైక్, మీ ఏరియా ఎగ్జిక్యూటివ్ ఎప్పుడు వస్తాడు ఇక్కడికి?
+assistant:  మా ఎగ్జిక్యూటివ్ మీకు కాల్ చేసి మీకు అనుకూలమైన రోజు మరియు టైమ్ కి పికప్ అరేంజ్ చేస్తారండీ.
+user: ఉమ్, మీకు ఎక్కడెక్కడ బ్రాంచెస్ ఉన్నాయి?
+assistant:  ఆ వివరాలు ప్రస్తుతం నా దగ్గర లేవండీ, మా ఎగ్జిక్యూటివ్ కాల్ చేసినప్పుడు మీకు పూర్తి వివరాలు చెప్తారు. ఇంకేమైనా సహాయం కావాలా అండీ?
+user: అలాగే, పేమెంట్ అనేది ఎలా చేస్తారండి, స్క్రాప్ పేమెంట్?
+assistant:  డిజిటల్ కాటాతో మీ ముందే తూకం వేసి, వెంటనే Google Pay, PhonePe లేదా క్యాష్ రూపంలో అక్కడికక్కడే పేమెంట్ చేస్తారు.
+user: ఉమ్, ఇవి లైక్, మా ఐటమ్స్ ఎలా ప్రైస్ చేస్తారు, ఇండివిడ్యువల్‌గా ప్రైస్ చేస్తారా, లేకపోతే డిస్మాంటిల్ చేసి ప్రైస్ చేస్తారా?
+assistant:  మా ఎగ్జిక్యూటివ్ కాల్ లో మీకు వస్తువుని బట్టి కేజీ లెక్కన లేదా పీస్ లెక్కన బెస్ట్ రేట్ చెప్తారండీ.
+user: ఉమ్, ఓకే అండి, థాంక్యూ.
+assistant: Crapbin ని ఎంచుకున్నందుకు చాలా ధన్యవాదాలు అండీ! హావ్ ఏ వండర్‌ఫుల్ డే!
+",2026-10-25T02:38:37+00:00,,11.56,Agent,Normal hangup,,,,0.9,INTERESTED_NOW,,High,,"The customer confirmed they have scrap available and provided details about the items, indicating they are interested in scheduling a pickup.","The conversation is between Priya from Crapbin customer service and a user discussing scrap pickup services. The user confirms having scrap items including iron, plastic, and e-waste, totaling approximately 8 kg and 25 boxes, located in Secunderabad, S. Runar Colony. Priya notes the details and informs the user that an area executive will contact them to confirm rates and pickup timings. The user inquires about branch locations and payment methods; Priya states that the executive will provide branch information and that payment is made on-site via digital methods like Google Pay, PhonePe, or cash after weighing. Pricing can be per kilogram or per piece, depending on the item, as explained by the executive during the call. The call concludes with thanks and confirmation of further assistance if needed.","The conversation is between Priya from Crapbin customer service and a user discussing scrap pickup services. The user confirms having scrap items including iron, plastic, and e-waste, totaling approximately 8 kg and 25 boxes, located in Secunderabad, S. Runar Colony. Priya notes the details and informs the user that an area executive will contact them to confirm rates and pickup timings. The user inquires about branch locations and payment methods; Priya states that the executive will provide branch information and that payment is made on-site via digital methods like Google Pay, PhonePe, or cash after weighing. Pricing can be per kilogram or per piece, depending on the item, as explained by the executive during the call. The call concludes with thanks and confirmation of further assistance if needed."
+3990569d-9563-47ab-b8fd-a504b0cd7b4e,a62ef278-c69b-437e-a187-96550ad7237a,,,completed,137.4,https://api.bolna.ai/recordings/call/3990569d-9563-47ab-b8fd-a504b0cd7b4e,"assistant: Hi, I’m Priya calling from the Crapbin customer service team.
+user: Yeah, hi Tim.
+assistant:  I see you previously used our Crapbin scrap pickup service. Do you have any scrap available for pickup right now?
+user: I actually don't remember what is a Crapbin.
+assistant:  Crapbin is a doorstep scrap pickup service where we collect household or office scrap like paper, plastic, iron, furniture, and appliances with digital weighing and instant payment. Do you have any scrap available right now?
+user: Yeah, yes, I do have.
+assistant:  Great! What kind of scrap items do you have?
+user: Yeah, it is like a plastic cardboards and newspapers.
+assistant:  Got it. Approximately how many kgs or items would that be?
+user: Yeah, that would be around 20 kgs.
+assistant:   Which area or locality would this pickup be from?
+user: Yeah, it is near Secunderabad, Hyderabad.
+assistant:  Got it, I've noted that down for your area. Our local executive will call you shortly to confirm the rates and pickup timing. Is there anything else I can help you with?
+user: Uh, like, will your executive will come here and wave it?
+assistant:  Yes, our team weighs the scrap digitally right in front of you and pays instantly via UPI (PhonePe, Google Pay) or cash. Is there anything else I can help you with?
+user: Is there any nearby executive so I can contact?
+assistant:   I will ask our area executive to call you directly so you can discuss everything with them. Is there anything else I can help you with?
+user: Yeah, like in what are the areas you are located?
+assistant:   I don't have those details right here, but our executive will call you shortly and help with any information you need. Is there anything else I can help you with?
+user: No, like when your executive will come here?
+assistant:  Once our area executive calls you, they will schedule the pickup date and time according to your convenience. Is there anything else I can help you with?
+user: No, thank you.
+assistant: Thank you for choosing Crapbin! Have a wonderful day!
+",2026-10-25T02:35:53+00:00,,11.0,Agent,Normal hangup,,,,0.9,INTERESTED_NOW,,High,,"The customer confirmed they have scrap available for pickup, indicating interest in scheduling a collection.","The conversation involved a Crapbin customer service representative and a user named Tim discussing scrap pickup services. The user was initially unsure about what Crapbin is. After explanation, Tim confirmed having about 20 kgs of plastic cardboards and newspapers near Secunderabad, Hyderabad, for pickup. The assistant informed that a local executive would contact him to confirm rates and schedule the pickup. Tim inquired about how the pickup process works and sought direct contact with a nearby executive, to which the assistant responded that the area executive would call him directly and coordinate details. The user also asked about the locations served by Crapbin, but the assistant did not have that information on hand. No pickup date was set during the call.","The conversation involved a Crapbin customer service representative and a user named Tim discussing scrap pickup services. The user was initially unsure about what Crapbin is. After explanation, Tim confirmed having about 20 kgs of plastic cardboards and newspapers near Secunderabad, Hyderabad, for pickup. The assistant informed that a local executive would contact him to confirm rates and schedule the pickup. Tim inquired about how the pickup process works and sought direct contact with a nearby executive, to which the assistant responded that the area executive would call him directly and coordinate details. The user also asked about the locations served by Crapbin, but the assistant did not have that information on hand. No pickup date was set during the call."
+a43da8d1-bfd2-484a-ab1c-86476c29229b,a62ef278-c69b-437e-a187-96550ad7237a,+919390584186,+911144740484,completed,19.4,https://api.bolna.ai/recordings/call/a43da8d1-bfd2-484a-ab1c-86476c29229b,"assistant: Hi, I’m calling from the Crapbin customer service team.
+user: Hello.
+assistant: I see you last used
+user: Yeah, hello. Tell me. Hello.
+assistant: Crapbin
+",2026-10-24T11:31:06+00:00,,1.9,user,Unknown,,,,0.5,NOT_INTERESTED,,Medium,,"The customer's lack of engagement and abrupt responses suggest disinterest, but there is no explicit refusal of service.","The conversation involved the user and an assistant from the Crapbin customer service team. The assistant initiated the call by identifying their affiliation with Crapbin, while the user acknowledged and prompted the assistant to continue. No specific issues, requests, or further details were discussed or resolved in the transcript provided.","The conversation involved the user and an assistant from the Crapbin customer service team. The assistant initiated the call by identifying their affiliation with Crapbin, while the user acknowledged and prompted the assistant to continue. No specific issues, requests, or further details were discussed or resolved in the transcript provided."
+a4b07b9b-c35a-4699-9cf4-829eccce4f73,a62ef278-c69b-437e-a187-96550ad7237a,+919390584186,+911144740484,completed,116.3,https://api.bolna.ai/recordings/call/a4b07b9b-c35a-4699-9cf4-829eccce4f73,"assistant: Hi, I’m calling from the Crapbin customer service team.
+user: Uh, tell me.
+assistant:  Crapbin is a doorstep scrap collection service where we weigh scrap digitally and pay instantly. Would you like to schedule a pickup?
+user: Yes.
+assistant:  Great! What kind of scrap items do you have ready?
+user: Uh, scrap, like a plastic e-waste.
+assistant:   Got it. Approximately how many kilograms or boxes would that be?
+user: 10 to 12 kgs.
+assistant:   Which area or colony are you located in?
+user: Second row.
+assistant:   Which date would be convenient for your pickup?
+user: Around 26.
+assistant:    26th, correct? Our coordinator will call you to confirm availability and pickup time. Can I help you with anything else?
+user: Uh, like on which date they will come to pick up the scrap?
+assistant:  Our executive will come on the date you choose, so can you please say which date is convenient for you?
+user: చూడండి ఇది Social D 20, 40, 26 November
+assistant:    26th November, correct? Our coordinator will call you to confirm the pickup time. Can I help you with anything else?
+user: Is there any nearby site to contact?
+assistant: Yes! Once our executive calls you, you can speak with them directly. Is there anything else I can help you with?
+user: No.
+assistant:  Thank you for choosing Crapbin! Have a wonderful day!
+user: మీరు మాట్లాడే వ్యక్తి మీ కాల్‌ని హోల్డ్‌లో పెట్టారు. దయచేసి లైన్.
+",2026-10-24T11:32:04+00:00,,10.07,user,Unknown,,,,0.95,INTERESTED_NOW,,High,,The customer expressed interest in scheduling a pickup by saying 'Yes' when asked if they would like to schedule a pickup.,"The conversation between the Crapbin customer service assistant and the user involved scheduling a doorstep scrap collection pickup. The user requested collection of 10 to 12 kilograms of plastic e-waste scrap from their location in Second Row. They agreed on a tentative pickup date of November 26, which the coordinator would confirm. The user inquired about contact options, and the assistant advised that the executive would call to confirm the pickup time and could be contacted directly thereafter. No further assistance was requested.","The conversation between the Crapbin customer service assistant and the user involved scheduling a doorstep scrap collection pickup. The user requested collection of 10 to 12 kilograms of plastic e-waste scrap from their location in Second Row. They agreed on a tentative pickup date of November 26, which the coordinator would confirm. The user inquired about contact options, and the assistant advised that the executive would call to confirm the pickup time and could be contacted directly thereafter. No further assistance was requested."
+c79c59d9-047e-4ada-addf-d5ec36af2c1f,a62ef278-c69b-437e-a187-96550ad7237a,+919390584186,+911144740484,completed,105.5,https://api.bolna.ai/recordings/call/c79c59d9-047e-4ada-addf-d5ec36af2c1f,"assistant: Hi, I’m Priya calling from the Crapbin customer service team.
+user: Good afternoon.
+assistant:  I see you last used Crapbin on . Would you like another scrap pickup?
+user: We would like for our next article—
+assistant:  Great! What kind of scrap items do you have ready?
+user: On plastic, e-waste, papers, etc.
+assistant:   Got it. Approximately how many kilograms or boxes would that be?
+user: Around 10 to 12 kgs.
+assistant: Which area
+user: And 8 boxes.
+assistant:  Which area or colony are you located in?
+user: I'm located in Mehndipuram,
+assistant:   Which date would be convenient for your pickup?
+user: like 27 November.
+assistant:   27 November, correct?
+user: Yes.
+assistant:   I've noted your preferred date. Our coordinator will call you to confirm availability and pickup time. Can I help you with anything else?
+user: When you were executed, we'll confer the pickup.
+assistant:  Yes! Once our executive calls you, you can speak with them directly. Is there anything else I can help you with?
+user: No, nothing.
+assistant:  Thank you for choosing Crapbin! Have a wonderful day!
+",2026-10-24T11:59:21+00:00,,7.08,user,Unknown,,,,0.9,INTERESTED_NOW,,High,,The customer expressed a desire to schedule a scrap pickup for specific items and confirmed a date for the pickup.,"The conversation was between a customer and Priya from Crapbin customer service regarding scheduling a scrap pickup. The customer wanted to arrange a pickup of approximately 10 to 12 kilograms and 8 boxes of scrap items including plastic, e-waste, and papers. The pickup location was specified as Mehndipuram, and the preferred date for collection was 27 November. The assistant confirmed that a coordinator would call the customer to confirm availability and pickup time. No further assistance was requested.","The conversation was between a customer and Priya from Crapbin customer service regarding scheduling a scrap pickup. The customer wanted to arrange a pickup of approximately 10 to 12 kilograms and 8 boxes of scrap items including plastic, e-waste, and papers. The pickup location was specified as Mehndipuram, and the preferred date for collection was 27 November. The assistant confirmed that a coordinator would call the customer to confirm availability and pickup time. No further assistance was requested."
+7a6a5bfb-5e8d-4918-ac4d-34d16343df60,a62ef278-c69b-437e-a187-96550ad7237a,+919390584186,+16282774700,completed,1.0,https://api.bolna.ai/recordings/call/7a6a5bfb-5e8d-4918-ac4d-34d16343df60,"assistant: Hi, I’m calling from the Crapbin customer service team.
+",2026-10-24T11:30:01+00:00,,5.96,Caller,Unknown,,,,0.7,CALL_BACK_LATER,,Medium,,"The call transcript does not provide sufficient information about the customer's interest or lack thereof in scheduling a pickup or their current scrap situation, but implies the customer may be busy or requires a follow-up.","The conversation involved a customer service representative from Crapbin initiating contact with the user, but no further details or user queries were recorded in the transcript.","The conversation involved a customer service representative from Crapbin initiating contact with the user, but no further details or user queries were recorded in the transcript."
+619bd64b-9b41-48c0-b38e-ffd04a84ca62,a62ef278-c69b-437e-a187-96550ad7237a,+919390584186,+16282774700,completed,24.0,https://api.bolna.ai/recordings/call/619bd64b-9b41-48c0-b38e-ffd04a84ca62,"assistant: Hi, I’m calling from the Crapbin customer service team.
+user: హలో. హలో,
+assistant: నమస్తే అండీ! మీరు ఇంతకుముందు Crapbin లో స్క్రాప్
+",2026-10-24T11:28:53+00:00,,6.62,Caller,Unknown,,,,0.2,NOT_INTERESTED,,Low,,"The transcript does not provide enough information about the customer's intent regarding scrap pickup, as the conversation appears to be very brief and not sufficiently informative.","The conversation involved the Crapbin customer service assistant calling a user who responded in Telugu. The assistant greeted the user and began to discuss previous scrap transactions with Crapbin, indicating the call's focus on the user's prior interactions with the service.","The conversation involved the Crapbin customer service assistant calling a user who responded in Telugu. The assistant greeted the user and began to discuss previous scrap transactions with Crapbin, indicating the call's focus on the user's prior interactions with the service."
+125ee634-3341-483a-b00d-8908b1bf8b7e,a62ef278-c69b-437e-a187-96550ad7237a,+919390584186,+16282774700,completed,16.0,https://api.bolna.ai/recordings/call/125ee634-3341-483a-b00d-8908b1bf8b7e,"assistant: Hi, I’m calling from the Crapbin customer service team.
+user: Yeah, I should buy.
+assistant: Great — what kind of scrap items do you have ready?
+",2026-10-24T11:27:24+00:00,,6.27,Caller,Unknown,,,,0.85,INTERESTED_NOW,,High,,"The customer indicated a willingness to engage ('Yeah, I should buy'), suggesting they are interested in scheduling a pickup for scrap.","The conversation involved a customer service representative from Crapbin and a user, where the user expressed readiness to make a purchase, and the assistant inquired about the types of scrap items the user had available.","The conversation involved a customer service representative from Crapbin and a user, where the user expressed readiness to make a purchase, and the assistant inquired about the types of scrap items the user had available."

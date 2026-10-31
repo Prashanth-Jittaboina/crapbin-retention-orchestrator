@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crapbin - Customer Retention & Orchestrator Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s; }
+    
+    /* Dark Theme Styles */
+    .dark body { background-color: #0b0f17; color: #f3f4f6; }
+    .dark .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .dark .badge-hot { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .dark .badge-warm { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .dark .badge-cold { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .dark .badge-dnc { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+    /* Light Theme Styles - Ultra Crisp & Readable */
+    html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
+    html:not(.dark) .glass-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05); }
+    html:not(.dark) header { background-color: #ffffff !important; border-bottom: 1px solid #e2e8f0 !important; }
+    html:not(.dark) .badge-hot { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    html:not(.dark) .badge-warm { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    html:not(.dark) .badge-cold { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    html:not(.dark) .badge-dnc { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    html:not(.dark) tr:hover { background-color: #f1f5f9 !important; }
+
+    .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Bar -->
+  <header class="border-b border-gray-800 dark:border-gray-800 bg-[#0f1422]/90 sticky top-0 z-40 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <span class="text-xl">♻️</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-bold tracking-tight text-gray-900 dark:text-white">Crapbin Customer Retention Agent</h1>
+            <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">Buildathon Demo</span>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Autonomous Multilingual Inactive Customer Re-engagement & Coordinator Dispatch</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-3">
+        <!-- Live Sync Pill -->
+        <div class="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-mono font-semibold">
+          <span class="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400 pulse-dot"></span>
+          <span>LIVE BOLNA SYNC (3s)</span>
+        </div>
+
+        <!-- Light/Dark Theme Switcher Button -->
+        <button onclick="toggleTheme()" id="themeToggleBtn" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs font-semibold rounded-lg border border-gray-300 dark:border-gray-700 transition flex items-center space-x-1.5 shadow-sm">
+          <span id="themeIcon">☀️</span>
+          <span id="themeText">Light Mode</span>
+        </button>
+
+        <button onclick="refreshData()" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs font-medium rounded-lg border border-gray-300 dark:border-gray-700 transition flex items-center space-x-1">
+          <span>🔄</span>
+          <span>Refresh</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- 6-Stage Reference Architecture Pipeline -->
+    <div class="glass-card rounded-2xl p-4 sm:p-5">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold flex items-center space-x-1.5">
+          <span>Target Architecture Pipeline</span>
+          <span class="text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-500/20 font-semibold">100% Aligned</span>
+        </h2>
+        <span class="text-xs text-gray-500 dark:text-gray-400">Autonomous Pipeline from Voice Call to Coordinator Action</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-xs font-mono">
+        <div class="bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 rounded-xl p-2.5 text-center">
+          <div class="text-gray-400 dark:text-gray-500 text-[10px] font-bold">STAGE 1</div>
+          <div class="font-bold text-gray-800 dark:text-gray-200 mt-0.5">Inactive DB</div>
+          <div class="text-[10px] text-gray-500 dark:text-gray-400">crapbin.customers</div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 rounded-xl p-2.5 text-center">
+          <div class="text-gray-400 dark:text-gray-500 text-[10px] font-bold">STAGE 2</div>
+          <div class="font-bold text-gray-800 dark:text-gray-200 mt-0.5">Bolna Voice AI</div>
+          <div class="text-[10px] text-gray-500 dark:text-gray-400">Telugu/Hindi/Eng</div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 rounded-xl p-2.5 text-center">
+          <div class="text-gray-400 dark:text-gray-500 text-[10px] font-bold">STAGE 3</div>
+          <div class="font-bold text-gray-800 dark:text-gray-200 mt-0.5">FastAPI & LLM</div>
+          <div class="text-[10px] text-gray-500 dark:text-gray-400">Structured Insights</div>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 rounded-xl p-2.5 text-center">
+          <div class="text-gray-400 dark:text-gray-500 text-[10px] font-bold">STAGE 4</div>
+          <div class="font-bold text-gray-800 dark:text-gray-200 mt-0.5">crapbin.db</div>
+          <div class="text-[10px] text-gray-500 dark:text-gray-400">Audit & Queue</div>
+        </div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-500/30 rounded-xl p-2.5 text-center">
+          <div class="text-emerald-700 dark:text-emerald-400 text-[10px] font-bold">STAGE 5</div>
+          <div class="font-bold text-emerald-800 dark:text-emerald-300 mt-0.5">Orchestrator</div>
+          <div class="text-[10px] text-emerald-600 dark:text-emerald-400/80">Guardrail Engine</div>
+        </div>
+        <div class="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-500/30 rounded-xl p-2.5 text-center">
+          <div class="text-emerald-700 dark:text-emerald-400 text-[10px] font-bold">STAGE 6</div>
+          <div class="font-bold text-emerald-800 dark:text-emerald-300 mt-0.5">Next-Best Action</div>
+          <div class="text-[10px] text-emerald-600 dark:text-emerald-400/80">4-Tier Dispatch</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Telephony Connect & Engagement Bar -->
+    <div class="glass-card rounded-2xl p-4 sm:p-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400 font-bold flex items-center space-x-1.5">
+            <span>📞 Call Connect & Customer Engagement Metrics</span>
+            <span class="text-[10px] text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-300 dark:border-emerald-500/20 font-semibold">Live Telephony</span>
+          </h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Real-time breakdown of customers reached vs unanswered/dropped calls</p>
+        </div>
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <div class="flex items-center space-x-2">
+            <div class="h-8 w-8 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-300 dark:border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold">
+              <span>🗣️</span>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase font-mono text-gray-500 dark:text-gray-400 font-semibold">Answered & Spoke</div>
+              <div class="text-base font-bold text-gray-900 dark:text-white flex items-baseline space-x-1.5">
+                <span id="statAnswered">0</span>
+                <span id="statAnswerRate" class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">(0%)</span>
+              </div>
+            </div>
+          </div>
+          <div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-800"></div>
+          <div class="flex items-center space-x-2">
+            <div class="h-8 w-8 rounded-lg bg-purple-100 dark:bg-purple-500/10 border border-purple-300 dark:border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 font-bold">
+              <span>📴</span>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase font-mono text-gray-500 dark:text-gray-400 font-semibold">Not Answered / Dropped</div>
+              <div class="text-base font-bold text-gray-800 dark:text-gray-300">
+                <span id="statNotAnswered">0</span>
+              </div>
+            </div>
+          </div>
+          <div class="h-8 w-[1px] bg-gray-200 dark:bg-gray-800"></div>
+          <div class="flex items-center space-x-2">
+            <div class="h-8 w-8 rounded-lg bg-blue-100 dark:bg-blue-500/10 border border-blue-300 dark:border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
+              <span>📊</span>
+            </div>
+            <div>
+              <div class="text-[10px] uppercase font-mono text-gray-500 dark:text-gray-400 font-semibold">Total Outbound Calls</div>
+              <div class="text-base font-bold text-gray-900 dark:text-white">
+                <span id="statTotalCalls">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Demo Trigger Controls -->
+    <div class="glass-card rounded-2xl p-4 sm:p-5 border border-indigo-200 dark:border-indigo-500/20 bg-gradient-to-r from-indigo-50/50 via-white to-indigo-50/50 dark:from-gray-900 dark:via-[#101729] dark:to-gray-900">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+        <div>
+          <h3 class="text-sm font-bold text-gray-900 dark:text-white flex items-center space-x-2">
+            <span>⚡ Live Buildathon Simulator (Click to Trigger Architecture Branches)</span>
+          </h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Trigger simulated calls to watch the Orchestrator classify and assign Next-Best Actions live.</p>
+        </div>
+        <button onclick="resetDemo()" id="resetBtn" class="text-xs px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 font-mono transition self-start sm:self-auto font-medium shadow-sm">
+          ↺ Reset to 11 Baseline Calls
+        </button>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+        <button onclick="simulateCall('hot')" class="px-3 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 border border-emerald-300 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300 font-medium text-xs flex flex-col items-center justify-center transition group shadow-sm">
+          <span class="text-base group-hover:scale-110 transition">🔥 Hot Lead</span>
+          <span class="text-[10px] text-emerald-600 dark:text-emerald-400/70 mt-0.5">Newspapers & Almirah</span>
+        </button>
+        <button onclick="simulateCall('warm')" class="px-3 py-2.5 rounded-xl bg-amber-50 dark:bg-amber-500/10 hover:bg-amber-100 dark:hover:bg-amber-500/20 border border-amber-300 dark:border-amber-500/30 text-amber-800 dark:text-amber-300 font-medium text-xs flex flex-col items-center justify-center transition group shadow-sm">
+          <span class="text-base group-hover:scale-110 transition">📞 Warm Lead</span>
+          <span class="text-[10px] text-amber-600 dark:text-amber-400/70 mt-0.5">Callback Saturday</span>
+        </button>
+        <button onclick="simulateCall('cold')" class="px-3 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-500/10 hover:bg-blue-100 dark:hover:bg-blue-500/20 border border-blue-300 dark:border-blue-500/30 text-blue-800 dark:text-blue-300 font-medium text-xs flex flex-col items-center justify-center transition group shadow-sm">
+          <span class="text-base group-hover:scale-110 transition">❄️ Cold Lead</span>
+          <span class="text-[10px] text-blue-600 dark:text-blue-400/70 mt-0.5">No Scrap Currently</span>
+        </button>
+        <button onclick="simulateCall('dnc')" class="px-3 py-2.5 rounded-xl bg-red-50 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 border border-red-300 dark:border-red-500/30 text-red-800 dark:text-red-300 font-medium text-xs flex flex-col items-center justify-center transition group shadow-sm">
+          <span class="text-base group-hover:scale-110 transition">🛑 Do Not Call</span>
+          <span class="text-[10px] text-red-600 dark:text-red-400/70 mt-0.5">Opt-out / Firm Refusal</span>
+        </button>
+        <button onclick="simulateCall('no-answer')" class="col-span-2 sm:col-span-1 px-3 py-2.5 rounded-xl bg-purple-50 dark:bg-purple-500/10 hover:bg-purple-100 dark:hover:bg-purple-500/20 border border-purple-300 dark:border-purple-500/30 text-purple-800 dark:text-purple-300 font-medium text-xs flex flex-col items-center justify-center transition group shadow-sm">
+          <span class="text-base group-hover:scale-110 transition">📴 No Answer</span>
+          <span class="text-[10px] text-purple-600 dark:text-purple-400/70 mt-0.5">Schedule Re-engagement</span>
+        </button>
+      </div>
+      <div id="simFeedback" class="hidden mt-3 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-950/80 border border-gray-300 dark:border-gray-800 text-xs font-mono text-gray-800 dark:text-gray-300 flex items-center justify-between">
+        <span id="simFeedbackText"></span>
+        <span class="text-emerald-600 dark:text-emerald-400 font-bold">✓ Completed</span>
+      </div>
+    </div>
+
+    <!-- 4-Tier Orchestrator Metrics -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-2xl p-4 border-l-4 border-l-emerald-500">
+        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <span class="font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Hot Lead</span>
+          <span class="text-lg">🔥</span>
+        </div>
+        <div class="mt-2 flex items-baseline space-x-2">
+          <span id="statHot" class="text-3xl font-extrabold text-gray-900 dark:text-white">0</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">leads</span>
+        </div>
+        <div class="mt-2 text-xs text-emerald-700 dark:text-emerald-400 font-medium">Create pickup request for coordinator</div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-4 border-l-4 border-l-amber-500">
+        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <span class="font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">Warm Lead</span>
+          <span class="text-lg">📞</span>
+        </div>
+        <div class="mt-2 flex items-baseline space-x-2">
+          <span id="statWarm" class="text-3xl font-extrabold text-gray-900 dark:text-white">0</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">leads</span>
+        </div>
+        <div class="mt-2 text-xs text-amber-700 dark:text-amber-400 font-medium">Schedule follow-up call</div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-4 border-l-4 border-l-blue-500">
+        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <span class="font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400">Cold Lead</span>
+          <span class="text-lg">❄️</span>
+        </div>
+        <div class="mt-2 flex items-baseline space-x-2">
+          <span id="statCold" class="text-3xl font-extrabold text-gray-900 dark:text-white">0</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">leads</span>
+        </div>
+        <div class="mt-2 text-xs text-blue-700 dark:text-blue-400 font-medium">Add to future nurture list</div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-4 border-l-4 border-l-red-500">
+        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+          <span class="font-bold uppercase tracking-wider text-red-700 dark:text-red-400">Do Not Call</span>
+          <span class="text-lg">🛑</span>
+        </div>
+        <div class="mt-2 flex items-baseline space-x-2">
+          <span id="statDNC" class="text-3xl font-extrabold text-gray-900 dark:text-white">0</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">leads</span>
+        </div>
+        <div class="mt-2 text-xs text-red-700 dark:text-red-400 font-medium">Mark as Do Not Call</div>
+      </div>
+    </div>
+
+    <!-- Main Workspace Tabs -->
+    <div class="glass-card rounded-2xl overflow-hidden">
+      <div class="border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-900/60 px-4 flex items-center justify-between">
+        <div class="flex space-x-1 sm:space-x-4">
+          <button onclick="switchTab('calls')" id="tabBtnCalls" class="py-3.5 px-3 border-b-2 border-emerald-500 font-bold text-xs text-emerald-700 dark:text-white transition flex items-center space-x-1.5">
+            <span>📞 Call Transcripts & Classifications</span>
+            <span id="badgeCallCount" class="ml-1 px-1.5 py-0.2 rounded-full bg-emerald-100 dark:bg-gray-800 text-emerald-800 dark:text-gray-300 text-[10px] font-bold">0</span>
+          </button>
+          <button onclick="switchTab('actions')" id="tabBtnActions" class="py-3.5 px-3 border-b-2 border-transparent font-semibold text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition flex items-center space-x-1.5">
+            <span>📋 Audit Action Queue</span>
+            <span id="badgeActionCount" class="ml-1 px-1.5 py-0.2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-[10px] font-bold">0</span>
+          </button>
+          <button onclick="switchTab('messages')" id="tabBtnMessages" class="py-3.5 px-3 border-b-2 border-transparent font-semibold text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition flex items-center space-x-1.5">
+            <span>✉️ Outbound Message Queue</span>
+            <span id="badgeMessageCount" class="ml-1 px-1.5 py-0.2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-[10px] font-bold">0</span>
+          </button>
+        </div>
+        <span class="hidden sm:inline text-[11px] text-gray-500 dark:text-gray-400 font-mono">Auto-refreshes every 3s</span>
+      </div>
+
+      <!-- Tab 1: Calls & Insights Table -->
+      <div id="tabContentCalls" class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-gray-100 dark:bg-gray-900/80 text-gray-600 dark:text-gray-400 uppercase font-mono text-[10px] tracking-wider border-b border-gray-200 dark:border-gray-800 font-bold">
+            <tr>
+              <th class="py-3 px-4">Call ID</th>
+              <th class="py-3 px-4">Customer / Phone</th>
+              <th class="py-3 px-4">Lang</th>
+              <th class="py-3 px-4">Scrap Details</th>
+              <th class="py-3 px-4">Locality / Availability</th>
+              <th class="py-3 px-4">Classification</th>
+              <th class="py-3 px-4">Next-Best Action</th>
+              <th class="py-3 px-4 text-right">Details</th>
+            </tr>
+          </thead>
+          <tbody id="callsTableBody" class="divide-y divide-gray-200 dark:divide-gray-800/60 font-sans">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab 2: Action Queue Table -->
+      <div id="tabContentActions" class="overflow-x-auto hidden">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-gray-100 dark:bg-gray-900/80 text-gray-600 dark:text-gray-400 uppercase font-mono text-[10px] tracking-wider border-b border-gray-200 dark:border-gray-800 font-bold">
+            <tr>
+              <th class="py-3 px-4">Action ID</th>
+              <th class="py-3 px-4">Call ID</th>
+              <th class="py-3 px-4">Customer / Phone</th>
+              <th class="py-3 px-4">Classification</th>
+              <th class="py-3 px-4">Next-Best Action</th>
+              <th class="py-3 px-4">Scrap Summary</th>
+              <th class="py-3 px-4">Status</th>
+            </tr>
+          </thead>
+          <tbody id="actionsTableBody" class="divide-y divide-gray-200 dark:divide-gray-800/60 font-sans">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab 3: Messages Table -->
+      <div id="tabContentMessages" class="overflow-x-auto hidden">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-gray-100 dark:bg-gray-900/80 text-gray-600 dark:text-gray-400 uppercase font-mono text-[10px] tracking-wider border-b border-gray-200 dark:border-gray-800 font-bold">
+            <tr>
+              <th class="py-3 px-4">Message ID</th>
+              <th class="py-3 px-4">Channel</th>
+              <th class="py-3 px-4">Recipient</th>
+              <th class="py-3 px-4">Status</th>
+              <th class="py-3 px-4">Message Preview</th>
+              <th class="py-3 px-4">Created At</th>
+            </tr>
+          </thead>
+          <tbody id="messagesTableBody" class="divide-y divide-gray-200 dark:divide-gray-800/60 font-sans">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Transcript & Detail Modal -->
+  <div id="detailModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-card max-w-2xl w-full rounded-2xl p-6 max-h-[85vh] overflow-y-auto border border-gray-300 dark:border-gray-700 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-800">
+        <div>
+          <h3 class="text-sm font-bold text-gray-900 dark:text-white" id="modalCallId">Call Detail</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400" id="modalSub">Transcript & LLM Analysis</p>
+        </div>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-700 dark:hover:text-white text-lg font-bold">✕</button>
+      </div>
+      <div class="mt-4 space-y-4">
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1 font-mono">Transcript</div>
+          <pre id="modalTranscript" class="p-3 bg-gray-50 dark:bg-gray-950 rounded-xl text-xs font-mono text-gray-800 dark:text-gray-300 whitespace-pre-wrap max-h-56 overflow-y-auto border border-gray-200 dark:border-gray-800"></pre>
+        </div>
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1 font-mono">Classification Reasoning</div>
+          <p id="modalReasoning" class="text-xs text-gray-800 dark:text-gray-300 p-3 bg-gray-50 dark:bg-gray-950/60 rounded-xl border border-gray-200 dark:border-gray-800"></p>
+        </div>
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-1 font-mono">Structured Insights JSON</div>
+          <pre id="modalInsights" class="p-3 bg-gray-50 dark:bg-gray-950 rounded-xl text-[11px] font-mono text-emerald-800 dark:text-emerald-300 whitespace-pre-wrap max-h-48 overflow-y-auto border border-gray-200 dark:border-gray-800"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let globalCalls = [];
+
+    // Theme Switcher Logic
+    function initTheme() {
+      const savedTheme = localStorage.getItem('crapbin_theme') || 'dark';
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('themeIcon').textContent = '🌙';
+        document.getElementById('themeText').textContent = 'Dark Mode';
+      } else {
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').textContent = '☀️';
+        document.getElementById('themeText').textContent = 'Light Mode';
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('crapbin_theme', 'light');
+        document.getElementById('themeIcon').textContent = '🌙';
+        document.getElementById('themeText').textContent = 'Dark Mode';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('crapbin_theme', 'dark');
+        document.getElementById('themeIcon').textContent = '☀️';
+        document.getElementById('themeText').textContent = 'Light Mode';
+      }
+    }
+
+    function badgeHtml(classification, status) {
+      if (status && ['in-progress', 'ringing', 'queued'].includes(status)) {
+        return `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30 animate-pulse">⚡ Call Active...</span>`;
+      }
+      if (classification === 'Hot Lead') {
+        return `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold badge-hot">🔥 Hot Lead</span>`;
+      } else if (classification === 'Warm Lead') {
+        return `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold badge-warm">📞 Warm Lead</span>`;
+      } else if (classification === 'Cold Lead') {
+        return `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold badge-cold">❄️ Cold Lead</span>`;
+      } else if (classification === 'Do Not Call') {
+        return `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold badge-dnc">🛑 Do Not Call</span>`;
+      }
+      return `<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-400">Processing...</span>`;
+    }
+
+    async function refreshData() {
+      try {
+        const [sumRes, callsRes, actionsRes, msgRes] = await Promise.all([
+          fetch('/summary').then(r => r.json()),
+          fetch('/calls').then(r => r.json()),
+          fetch('/actions').then(r => r.json()),
+          fetch('/messages').then(r => r.json()),
+        ]);
+
+        // Update stats
+        document.getElementById('statHot').textContent = sumRes.tiers['Hot Lead'] || 0;
+        document.getElementById('statWarm').textContent = sumRes.tiers['Warm Lead'] || 0;
+        document.getElementById('statCold').textContent = sumRes.tiers['Cold Lead'] || 0;
+        document.getElementById('statDNC').textContent = sumRes.tiers['Do Not Call'] || 0;
+
+        // Telephony connect stats
+        if (sumRes.telephony) {
+          document.getElementById('statAnswered').textContent = sumRes.telephony.answered || 0;
+          document.getElementById('statNotAnswered').textContent = sumRes.telephony.not_answered || 0;
+          document.getElementById('statAnswerRate').textContent = `(${sumRes.telephony.answer_rate_pct || 0}%)`;
+          document.getElementById('statTotalCalls').textContent = sumRes.total_calls || 0;
+        }
+
+        document.getElementById('badgeCallCount').textContent = callsRes.total || 0;
+        document.getElementById('badgeActionCount').textContent = actionsRes.total || 0;
+        document.getElementById('badgeMessageCount').textContent = msgRes.total || 0;
+
+        globalCalls = callsRes.calls || [];
+
+        // Render calls table
+        const tbody = document.getElementById('callsTableBody');
+        tbody.innerHTML = '';
+        globalCalls.forEach(c => {
+          const insights = c.insights || {};
+          const materials = (insights.scrap_materials || []).join(', ');
+          const qty = insights.approx_quantity || '';
+          const scrap = materials && qty ? `${materials} (${qty})` : (materials || qty || '-');
+          const locality = insights.locality || '-';
+          const avail = insights.availability || insights.customer_mentioned_date || '-';
+          const phone = c.phone || '<span class="text-gray-400 font-mono">(web-call)</span>';
+          const name = insights.customer_name ? `<span class="text-gray-900 dark:text-white font-semibold">${insights.customer_name}</span><br><span class="text-[11px] text-gray-500 dark:text-gray-400 font-mono">${phone}</span>` : `<span class="font-mono text-gray-800 dark:text-gray-300">${phone}</span>`;
+
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-gray-100 dark:hover:bg-gray-800/40 transition';
+          tr.innerHTML = `
+            <td class="py-3 px-4 font-mono text-gray-600 dark:text-gray-400 font-medium">${c.call_id.substring(0, 8)}</td>
+            <td class="py-3 px-4">${name}</td>
+            <td class="py-3 px-4 font-mono text-gray-600 dark:text-gray-400 uppercase text-[11px] font-semibold">${insights.language || '-'}</td>
+            <td class="py-3 px-4 text-gray-800 dark:text-gray-200 max-w-xs truncate font-medium">${scrap}</td>
+            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">${locality}<br><span class="text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold">${avail}</span></td>
+            <td class="py-3 px-4">${badgeHtml(c.orchestrator_classification, c.status)}</td>
+            <td class="py-3 px-4 text-gray-800 dark:text-gray-200 font-semibold">${c.next_best_action || '-'}</td>
+            <td class="py-3 px-4 text-right">
+              <button onclick="viewDetails('${c.call_id}')" class="px-2.5 py-1 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 text-[11px] font-mono border border-gray-300 dark:border-gray-700 transition font-medium shadow-sm">View</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+        // Render actions table
+        const abody = document.getElementById('actionsTableBody');
+        abody.innerHTML = '';
+        (actionsRes.actions || []).forEach(a => {
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-gray-100 dark:hover:bg-gray-800/40 transition';
+          tr.innerHTML = `
+            <td class="py-3 px-4 font-mono text-emerald-700 dark:text-emerald-400 font-bold">#${a.id}</td>
+            <td class="py-3 px-4 font-mono text-gray-600 dark:text-gray-400 font-medium">${a.call_id.substring(0, 8)}</td>
+            <td class="py-3 px-4 font-medium text-gray-800 dark:text-gray-200">${a.customer_name || '-'} <span class="text-gray-500 font-mono text-[11px]">(${a.phone || 'web-call'})</span></td>
+            <td class="py-3 px-4">${badgeHtml(a.orchestrator_classification)}</td>
+            <td class="py-3 px-4 text-gray-900 dark:text-white font-semibold">${a.next_best_action}</td>
+            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">${a.scrap_summary || '-'}</td>
+            <td class="py-3 px-4 font-mono text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">${a.status}</td>
+          `;
+          abody.appendChild(tr);
+        });
+
+        // Render messages table
+        const mbody = document.getElementById('messagesTableBody');
+        mbody.innerHTML = '';
+        (msgRes.messages || []).forEach(m => {
+          const payload = m.payload || {};
+          let preview = payload.subject || payload.template || '-';
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-gray-100 dark:hover:bg-gray-800/40 transition';
+          tr.innerHTML = `
+            <td class="py-3 px-4 font-mono text-gray-600 dark:text-gray-400 font-medium">#${m.id}</td>
+            <td class="py-3 px-4 font-mono text-[11px] text-indigo-700 dark:text-indigo-400 font-bold">${m.channel}</td>
+            <td class="py-3 px-4 font-mono text-gray-800 dark:text-gray-300 font-medium">${m.recipient || '-'}</td>
+            <td class="py-3 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-100 text-amber-800 dark:bg-amber-500/10 dark:text-amber-400 border border-amber-300 dark:border-amber-500/20 font-bold">${m.status}</span></td>
+            <td class="py-3 px-4 text-gray-800 dark:text-gray-300 font-sans max-w-sm truncate font-medium">${preview}</td>
+            <td class="py-3 px-4 font-mono text-[10px] text-gray-500 dark:text-gray-500">${m.created_at || '-'}</td>
+          `;
+          mbody.appendChild(tr);
+        });
+
+      } catch (err) {
+        console.error('Failed to refresh dashboard data:', err);
+      }
+    }
+
+    async function simulateCall(tier) {
+      const fb = document.getElementById('simFeedback');
+      const fbt = document.getElementById('simFeedbackText');
+      fb.classList.remove('hidden');
+      fbt.textContent = `Sending simulated ${tier.toUpperCase()} webhook and classifying lead...`;
+
+      try {
+        const res = await fetch(`/api/simulate/${tier}`, { method: 'POST' }).then(r => r.json());
+        fbt.textContent = `Call ${res.call_id.substring(0, 12)} classified as: ${res.classification} -> ${res.next_best_action}`;
+        await refreshData();
+      } catch (e) {
+        fbt.textContent = `Simulation error: ${e}`;
+      }
+    }
+
+    async function resetDemo() {
+      if (!confirm('Reset database back to the 11 baseline calls?')) return;
+      const res = await fetch('/api/reset-demo', { method: 'POST' }).then(r => r.json());
+      alert(res.message);
+      refreshData();
+    }
+
+    function switchTab(tab) {
+      document.getElementById('tabContentCalls').classList.toggle('hidden', tab !== 'calls');
+      document.getElementById('tabContentActions').classList.toggle('hidden', tab !== 'actions');
+      document.getElementById('tabContentMessages').classList.toggle('hidden', tab !== 'messages');
+
+      document.getElementById('tabBtnCalls').className = tab === 'calls'
+        ? 'py-3.5 px-3 border-b-2 border-emerald-500 font-bold text-xs text-emerald-700 dark:text-white transition flex items-center space-x-1.5'
+        : 'py-3.5 px-3 border-b-2 border-transparent font-semibold text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition flex items-center space-x-1.5';
+
+      document.getElementById('tabBtnActions').className = tab === 'actions'
+        ? 'py-3.5 px-3 border-b-2 border-emerald-500 font-bold text-xs text-emerald-700 dark:text-white transition flex items-center space-x-1.5'
+        : 'py-3.5 px-3 border-b-2 border-transparent font-semibold text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition flex items-center space-x-1.5';
+
+      document.getElementById('tabBtnMessages').className = tab === 'messages'
+        ? 'py-3.5 px-3 border-b-2 border-emerald-500 font-bold text-xs text-emerald-700 dark:text-white transition flex items-center space-x-1.5'
+        : 'py-3.5 px-3 border-b-2 border-transparent font-semibold text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition flex items-center space-x-1.5';
+    }
+
+    function viewDetails(callId) {
+      const c = globalCalls.find(item => item.call_id === callId);
+      if (!c) return;
+
+      document.getElementById('modalCallId').textContent = `Call ID: ${c.call_id}`;
+      document.getElementById('modalSub').textContent = `Phone: ${c.phone || 'Web Call'} | Status: ${c.status} | Classification: ${c.orchestrator_classification}`;
+      document.getElementById('modalTranscript').textContent = c.transcript || '(No transcript recorded)';
+      document.getElementById('modalReasoning').textContent = c.classification_reasoning || '(No reasoning captured)';
+      document.getElementById('modalInsights').textContent = JSON.stringify(c.insights || {}, null, 2);
+
+      document.getElementById('detailModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detailModal').classList.add('hidden');
+    }
+
+    // Initial load and live auto-polling every 3 seconds for Bolna webhooks
+    initTheme();
+    refreshData();
+    setInterval(refreshData, 3000);
+  </script>
+</body>
+</html>
